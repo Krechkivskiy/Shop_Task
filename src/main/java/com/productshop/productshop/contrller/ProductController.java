@@ -22,14 +22,14 @@ public class ProductController {
         this.userService = userService;
     }
 
-    @PostMapping(value = "/products/upload", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/products/upload",  consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ProductDto uploadProduct(@RequestBody ProductDto productDto, @RequestParam(name = "image",
             required = false) MultipartFile productPicture,
                                     @AuthenticationPrincipal JwtUser user) {
         return userService.addProduct(productDto, user, productPicture);
     }
 
-    @PutMapping(value = "/products/update", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/products/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ProductDto updateProduct(@AuthenticationPrincipal JwtUser jwtUser,
                                     @RequestBody ProductDto productDto, @RequestParam(name = "image",
             required = false) MultipartFile productPicture) {
